@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="RU_ru">
+<head>
+    <!-- __POSITION__ надо подменить при отдаче страницы на текущее положение в очереди -->
+    <title>Ваша позиции в очереди - __POSITION__</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <style>
+        div.fluent-block {
+            width: 400px;
+            height: 200px;
+            background-color: #86aceb;
+            border-radius: 10px;
+
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+
+            padding: 10px;
+        }
+        h2.title {
+            text-align: center;
+            color: #ffffff;
+        }
+        h3.counter {
+            text-align: center;
+            color: #EB9DC9;
+            font-size: 36px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        p.description {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="fluent-block">
+    <!-- __POSITION__ надо подменить при отдаче страницы на текущее положение в очереди -->
+    <h2 class="title">Ваша позиция в очереди:</h2>
+    <h3 class="counter">__POSITION__</h3>
+    <p class="description">Пожалуйста, не обновляйте страницу. Как только очередь дойдет до вас - страница обновится сама.</p>
+</div>
+</body>

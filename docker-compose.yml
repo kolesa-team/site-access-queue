@@ -1,0 +1,38 @@
+version: '3'
+services:
+  openresty:
+    image: openresty/openresty:latest
+    ports:
+    - 9191:9191
+    volumes:
+      - ./openresty/libs:/etc/nginx/lua/resty
+      - ./openresty/pages:/etc/nginx/lua/pages
+      - ./public:/var/www/public
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+  redis:
+    image: redis:4.0
+    # важно запускать редис с notify-keyspace-events KEgx, чтобы он уведомлял об истечении действия ключей
+    command: "redis-server --notify-keyspace-events KEgx"
+    volumes:
+      - redis:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+  # программа на го увеличивает счетчик свободных мест, когда ключ пользователя удаляется из-за бедействия
+  watcher:
+    image: golang:1.13
+    volumes:
+      - ./app:/src
+    command: "go run main.go"
+    working_dir: /src
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+volumes:
+  redis:
