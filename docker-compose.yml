@@ -28,7 +28,7 @@ services:
     image: golang:1.13
     volumes:
       - ./app:/src
-    command: "go run main.go"
+    command: "go run -mod=vendor main.go"
     working_dir: /src
     logging:
       driver: "json-file"
